@@ -1,6 +1,4 @@
 # base
-import datetime
-import socket
 import os
 import re
 # external libraries
@@ -68,8 +66,6 @@ def convert_csv_to_list(posts_df):
         for word in token_words:
             stem_sentence.append(porter.stem(word))
             stem_sentence.append(" ")
-#         # tokenize it
-#         tokenized_list = word_tokenize(text)
 
         # convert to lower case
         tokenized_list = [w.lower() for w in stem_sentence]
@@ -202,6 +198,7 @@ def test_model(test_title, index, dictionary, model):
 # COLOUR AND STYLE
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
+port = int(os.environ.get("PORT", 5000))
 server = app.server
 
 colors = {"white": "#ffffff",
@@ -269,4 +266,6 @@ def update_output_div(input_value):
 
 
 if __name__ == '__main__':
-    app.run_server(debug=False)
+    app.run_server(debug=False,
+                   host="0.0.0.0",
+                   port=port)

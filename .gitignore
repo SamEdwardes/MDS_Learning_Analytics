@@ -2,6 +2,8 @@
 data/ubc_course_calendar_data.csv
 .env
 *.Rproj
+.devcontainer/*
+.vscode/
 ########################
 
 # History files
