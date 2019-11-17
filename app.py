@@ -195,6 +195,7 @@ def test_model(test_title, index, dictionary, model):
 # COLOUR AND STYLE
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
+app.title = "UBC Canvas Discussion Board Demo"
 port = int(os.environ.get("PORT", 5000))
 server = app.server
 
