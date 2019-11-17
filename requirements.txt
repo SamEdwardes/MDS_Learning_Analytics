@@ -1,12 +1,11 @@
-dash
-dash-renderer
-dash-core-components
-dash-html-components
-plotly
-plotly-express
+# Plotly Dash
+dash==1.6.1
+dash-renderer==1.2.1
+dash-core-components==1.5.1
+dash-html-components==1.0.2
+plotly==4.3.0
+plotly-express==0.4.1
 
-# testing...
-gensim
-nltk
-requests
-python-dotenv
+# Other
+gensim==3.8.1
+nltk==3.4.5

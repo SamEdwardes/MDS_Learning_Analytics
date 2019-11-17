@@ -6,6 +6,8 @@ Authors: Anas Muhammad, Alexander Hinton, Sam Edwardes, Jarome Leslie
 
 Program: Master of Data Science
 
+Demo link: [https://ubc-canvas-discussion-board.herokuapp.com/](https://ubc-canvas-discussion-board.herokuapp.com/)
+
 ### Problem
 
 - Canvas discussion boards are too cluttered and may be intimidating for students
@@ -27,11 +29,3 @@ Screenshot of web app:
 ### Presentation
 
 Our presentation may be found here: [Canvas thread recommender presentation](https://github.com/jsleslie/MDS_Learning_Analytics/blob/master/pres/Canvas_thread_recommender.pptx)
-
-### Requirements 
-
-The python libraries used in this project may be found here: [requirements](https://github.com/jsleslie/MDS_Learning_Analytics/blob/master/doc/requirements.txt)
-
-### Demo code
-
-The code for our demo is located here: [link](https://github.com/jsleslie/MDS_Learning_Analytics/blob/master/app.py)

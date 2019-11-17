@@ -1,23 +1,14 @@
-# base
 import os
-import re
-# external libraries
+import pandas as pd
+# viz
 import dash
 import dash_core_components as dcc
 import dash_html_components as html
 from dash.dependencies import Input, Output
-import nltk
-import json
-import pandas as pd
-import plotly.graph_objs as go
-import plotly_express as px
 # languge
-from collections import defaultdict
-import nltk
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 from nltk.stem import PorterStemmer
-import pprint
 from gensim import corpora
 from gensim import models
 from gensim import similarities
@@ -34,14 +25,17 @@ df_discussions = pd.concat([df1, df2]).reset_index()
 
 
 ##############################################
-# BUILDING MODEL
+# BUILD MODEL
 ##############################################
 
 def convert_csv_to_list(posts_df):
     """[summary]
-    
+
     Arguments:
-        posts_df {[type]} -- [description]
+        posts_df {pandas.DataFrame} -- DataFrame containing posts
+
+    Returns:
+        list -- a list of lists
     """
     # take only the combined column
     posts_df = posts_df["combined"]
@@ -83,10 +77,10 @@ def convert_csv_to_list(posts_df):
 
 def train_model(corpus):
     """[summary]
-    
+
     Arguments:
         corpus {[type]} -- [description]
-    
+
     Returns:
         [type] -- [description]
     """
@@ -100,8 +94,10 @@ def train_model(corpus):
     tfidf_reddit = models.TfidfModel(bow_corpus_reddit)
 
     # similarities model
-    index_reddit = similarities.SparseMatrixSimilarity(tfidf_reddit[bow_corpus_reddit],
-                                                       num_features=num_words)
+    index_reddit = similarities.SparseMatrixSimilarity(
+        tfidf_reddit[bow_corpus_reddit],
+        num_features=num_words
+    )
     return index_reddit, dictionary_reddit, tfidf_reddit
 
 
@@ -140,13 +136,13 @@ def generate_table(df, max_rows=10):
 
 def test_model(test_title, index, dictionary, model):
     """[summary]
-    
+
     Arguments:
         test_title {[type]} -- [description]
         index {[type]} -- [description]
         dictionary {[type]} -- [description]
         model {[type]} -- [description]
-    
+
     Returns:
         [type] -- [description]
     """
@@ -191,6 +187,7 @@ def test_model(test_title, index, dictionary, model):
 
     return ind_to_return
 
+
 ###########################################
 # APP LAYOUT
 ###########################################
@@ -219,7 +216,18 @@ app.layout = html.Div(style={'backgroundColor': colors['light_grey']}, children=
         # SIDEBAR
         html.Div(className="two columns", style={'padding': 20}, children=[
             html.Img(src="assets/ubc-logo-2.png", width="50"),
-            html.P("Home\nAnnouncements\nDiscussions\nGrades\nPeople")
+            dcc.Markdown("""
+            Home
+            
+            Announcements
+            
+            **Discussions**
+
+            Grades
+
+            People
+            """),
+            html.A("GitHub Repo", href="https://github.com/SamEdwardes/MDS_Learning_Analytics")
         ]),
         # DISCUSSION BOARD
         html.Div(className="ten columns", style={"backgroundColor": colors['white'], "padding": 20}, children=[
@@ -245,6 +253,7 @@ app.layout = html.Div(style={'backgroundColor': colors['light_grey']}, children=
 ###########################################
 # APP CALL BACKS
 ###########################################
+
 
 @app.callback(
     Output(component_id='topic_prediction', component_property='children'),
