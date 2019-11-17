@@ -21,9 +21,14 @@ Demo link: [https://ubc-canvas-discussion-board.herokuapp.com/](https://ubc-canv
 
 ### Tool
 
-Screenshot of web app:
+Screenshot of [web app](https://ubc-canvas-discussion-board.herokuapp.com/):
 
 ![img](assets/canvas-demo-01.png)
+
+### Notes
+
+- All code required to run app is in [app.py](app.py)
+- Additional code exists in [src](src) and [notebooks](notebooks) but this is just for future reference and not required.
 
 
 ### Presentation
